@@ -1,0 +1,15 @@
+{
+	"name": "ADFbatch14",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "fe324b5e-cd63-4fda-a461-28065499313a",
+		"tenantId": "fcbe2528-16ef-4a51-bd76-0c88aea007de"
+	}
+}

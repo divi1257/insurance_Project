@@ -1,0 +1,138 @@
+{
+	"name": "silverlayer_notebook_Execution",
+	"properties": {
+		"activities": [
+			{
+				"name": "branch_Table",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/SilverLayer_setup/silverlayer-Dataload/Ingestion-Branchdata 2026-10-22 16:57:55"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks_LS",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "customer_table",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "branch_Table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/SilverLayer_setup/silverlayer-Dataload/Ingestion_customerdata 2026-10-22 17:49:30"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks_LS",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "claim_table",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "customer_table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/SilverLayer_setup/silverlayer-Dataload/Ingestion - Claimdata2026-10-25 15:56:45"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks_LS",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Agent_table",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "claim_table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/SilverLayer_setup/silverlayer-Dataload/Ingestion_AgentData2026-10-21 13:48:25"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks_LS",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Policydata_table",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Agent_table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/SilverLayer_setup/silverlayer-Dataload/Ingestion_Policydata 2026-10-25 17:23:01"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks_LS",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-10-26T04:05:16Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

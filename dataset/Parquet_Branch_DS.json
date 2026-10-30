@@ -1,0 +1,20 @@
+{
+	"name": "Parquet_Branch_DS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Adls_LS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "landing"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
